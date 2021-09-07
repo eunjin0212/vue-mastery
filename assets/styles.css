@@ -112,6 +112,9 @@ p {
 .product-info {
   width: 50%;
 }
+.product-color{
+  cursor: pointer;
+}
 
 .review-form {
   display: flex;
