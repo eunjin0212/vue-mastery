@@ -1,46 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Vue Mastery</title>
-        <!-- Import Styles -->
-        <link rel="stylesheet" href="./assets/styles.css" />
-        <!-- Import Vue.js -->
-        <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
-    </head>
-    <body>
-        <div id="app">
-            <div class="nav-bar"></div>
-            <div class="cart">Cart({{cart}})</div>
-            <div class="product-display">
-                <div class="product-container">
-                    <div class="product-image">
-                        <img :src="image" />
-                    </div>
-                </div>
-            </div>
-        <h1>{{title}}</h1>
-        <p v-if="inventory > 10">
-            <!-- v-show : toggle elements에 사용 -->
-            <!-- v-if 와 v-eles를 꼭 같이 쓸 필요는 없음 -->
-            In Stock
-        </p>
-        <p v-else-if="inventory <=10 && inventory > 0">Almost sold out</p>
-        <p v-else>Out of Stock</p>
-        <ul>
-            <li v-for="detail in details">{{detail}}</li>
-        </ul>
-        <div v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)" class="color-circle"
-            :style="{ backgroundColor: variant.color }">
-        </div>
-        <button class="button" :class="{disabledButton: !inStock}" :disabled="!inStock" @click="addToCart">
-            Add to Cart
-        </button>
-        <!-- :class class를 동적으로 사용할 때, class를 추가할지 안할지 결정할 수 있음! -->
-        </div>
-        <!-- Import Js -->
-        <!-- https://www.vuemastery.com/courses/intro-to-vue-3/computed-properties-vue3 -->
-    </body>
-    <script src="./main.js"></script>
-    <script>const mountApp = app.mount('#app')</script>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Vue Mastery</title>
+		<!-- Import Styles -->
+		<link rel="stylesheet" href="./assets/styles.css" />
+		<!-- Import Vue.js -->
+		<script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div class="nav-bar"></div>
+			<div class="cart">Cart({{cart}})</div>
+			<product-display :premium="premium"></product-display>
+		</div>
+		<!-- Import Js -->
+	</body>
+	<script src="./main.js"></script>
+	<script src="./components/ProductDisplay.js"></script>
+	<script src="./components/ProductDetails.js"></script>
+
+	<script>
+		const mountApp = app.mount('#app');
+	</script>
 </html>
