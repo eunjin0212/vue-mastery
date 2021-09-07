@@ -7,36 +7,38 @@ app.component('product-display', {
 		},
 	},
 	template: `<div class="product-display">
-				<div class="product-container">
-					<div class="product-image">
-						<img v-bind:src="image" />
-					</div>
-				</div>
-			</div>
-            <div class="product-info">
-			    <h1>{{ title }}</h1>
-			    <p v-if="inStock">In Stock</p>
-			    <p v-else>Out of Stock</p>
+				    <div class="product-container">
+					    <div class="product-image">
+						    <img v-bind:src="image" />
+					    </div>
+                        <div class="product-info">
+                            <h1>{{ title }}</h1>
+                            <p v-if="inStock">In Stock</p>
+                            <p v-else>Out of Stock</p>
 
-                <p>Shipping: {{ shipping }}</p>
-                <product-details :details="details"></product-details>
+                            <p>Shipping: {{ shipping }}</p>
+                            <product-details :details="details"></product-details>
 
-		    	<div
-		    		v-for="(variant, index) in variants"
-		    		:key="variant.id"
-		    		@mouseover="updateVariant(index)"
-		    		class="color-circle"
-		    		:style="{ backgroundColor: variant.color }">
-                </div>
+                            <div
+                                v-for="(variant, index) in variants"
+                                :key="variant.id"
+                                @mouseover="updateVariant(index)"
+                                class="color-circle"
+                                :style="{ backgroundColor: variant.color }">
+                            </div>
 
-	    		<button
-		    		class="button"
-			    	:class="{disabledButton: !inStock}"
-			    	:disabled="!inStock"
-			    	v-on:click="addToCart">
-			    	Add to Cart
-			    </button>
-            </div>`,
+                            <button
+                                class="button"
+                                :class="{disabledButton: !inStock}"
+                                :disabled="!inStock"
+                                v-on:click="addToCart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+                    <review-form @review-submitted="addReview"></review-form>
+			    </div>`,
 	// :class class를 동적으로 사용할 때, class를 추가할지 안할지 결정할 수 있음!
 	// v-show : toggle elements에 사용
 	// v-if 와 v-eles를 꼭 같이 쓸 필요는 없음
@@ -61,6 +63,7 @@ app.component('product-display', {
 			],
 			brand: 'Vue Mastery',
 			selectedVariant: 0,
+			reviews: [],
 		};
 	},
 	methods: {
@@ -69,6 +72,9 @@ app.component('product-display', {
 		},
 		updateVariant(index) {
 			this.selectedVariant = index;
+		},
+		addReview(review) {
+			this.reviews.push(review);
 		},
 	},
 	computed: {
