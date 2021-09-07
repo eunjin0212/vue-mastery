@@ -35,9 +35,12 @@ body {
 .color-circle {
   width: 50px;
   height: 50px;
+  line-height: 50px;
   margin-top: 8px;
   border: 2px solid #d8d8d8;
   border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
 }
 
 
@@ -111,9 +114,6 @@ p {
 .product-image,
 .product-info {
   width: 50%;
-}
-.product-color{
-  cursor: pointer;
 }
 
 .review-form {

@@ -30,11 +30,16 @@
         <ul>
             <li v-for="detail in details">{{detail}}</li>
         </ul>
-        <div class="product-color" v-for='variant in variants' :key="variant.id" @mouseover="updateImage(variant.image)">
-            {{variant.color}}</div>
-        <button class="button" @click="addToCart">Add to Cart</button>
+        <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)" class="color-circle"
+            :style="{ backgroundColor: variant.color }">
+        </div>
+        <button class="button" :class="{disabledButton: !inStock}" :disabled="!inStock" @click="addToCart">
+            Add to Cart
+        </button>
+        <!-- :class class를 동적으로 사용할 때, class를 추가할지 안할지 결정할 수 있음! -->
         </div>
         <!-- Import Js -->
+        <!-- https://www.vuemastery.com/courses/intro-to-vue-3/computed-properties-vue3 -->
     </body>
     <script src="./main.js"></script>
     <script>const mountApp = app.mount('#app')</script>
