@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <title>Vue Mastery</title>
-    <!-- Import Styles -->
-    <link rel="stylesheet" href="./assets/styles.css" />
-    <!-- Import Vue.js -->
-    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
-</head>
-
-<body>
-    <div id="app">
-                <div class="nav-bar"></div>
-                <div class="product-display">
-                    <div class="product-container">
-                        <div class="product-image">
-                            <img :src="image" />
-                        </div>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Vue Mastery</title>
+        <!-- Import Styles -->
+        <link rel="stylesheet" href="./assets/styles.css" />
+        <!-- Import Vue.js -->
+        <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div class="nav-bar"></div>
+            <div class="product-display">
+                <div class="product-container">
+                    <div class="product-image">
+                        <img :src="image" />
                     </div>
                 </div>
+            </div>
         <h1>{{product}}</h1>
-    </div>
-
-    <!-- Import Js -->
+        <p v-if="inventory > 10">
+            <!-- v-show : toggle elements에 사용 -->
+            <!-- v-if 와 v-eles를 꼭 같이 쓸 필요는 없음 -->
+            In Stock
+        </p>
+        <p v-else-if="inventory <=10 && inventory > 0">Almost sold out</p>
+        <p v-else>Out of Stock</p>
+        </div>
+        <!-- Import Js -->
+    </body>
     <script src="./main.js"></script>
     <script>const mountApp = app.mount('#app')</script>
-</body>
-
 </html>
